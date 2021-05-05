@@ -15,6 +15,13 @@ output: vitae::awesomecv
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+# Fixes the locale error when knitting with vitae
+# From https://community.rstudio.com/t/during-startup-warning-message-setting-lc-ctype-failed-on-windows/21451/3
+if (.Platform$OS.type == 'windows') {
+  Sys.setlocale(category = 'LC_ALL','English_United States.1250')
+} else {
+  Sys.setlocale(category = 'LC_ALL','en_US.UTF-8')
+}
 library(vitae)
 ```
 
