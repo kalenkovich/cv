@@ -1,4 +1,5 @@
 name: cv
 dependencies:
   - defaults::python==3.9.4
+  - defalts::pandoc==2.12
   - conda-forge::r-base==4.0.3
