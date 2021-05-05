@@ -1,14 +1,13 @@
 ---
-name: Marie
-surname: Curie
-position: "Professor"
-address: "School of Physics & Chemistry, École Normale Supérieure"
-phone: +1 22 3333 4444
-www: mariecurie.com
-email: "Marie.Curie@ens.fr"
-twitter: mariecurie
-github: mariecurie
-linkedin: mariecurie
+name: Evgenii
+surname: Kalenkovich
+position: "Junior Research Fellow"
+address: "Institute for Cognitive Neuroscience, HSE University, Moscow, Russia"
+phone: +7 958 823 01 99
+www: "kalenkovich.netlify.app"
+email: "e.kalenkovich@gmail.com"
+twitter: kalenkovich
+github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::awesomecv
 ---
