@@ -1,0 +1,4 @@
+name: cv
+dependencies:
+  - defaults::python==3.9.4
+  - conda-forge::r-base==4.0.3
