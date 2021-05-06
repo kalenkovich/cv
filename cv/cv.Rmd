@@ -22,9 +22,14 @@ if (.Platform$OS.type == 'windows') {
   Sys.setlocale(category = 'LC_ALL','en_US.UTF-8')
 }
 library(vitae)
+library(tibble)
 ```
 
 ```{r get-data}
+# Education from Orcid
+education.data <- rorcid::orcid_educations("0000-0002-4606-4179")$`0000-0002-4606-4179`$`affiliation-group`$summaries %>%
+  dplyr::bind_rows()
+
 # Publications from Google Scholar
 # copied from https://github.com/seabbs/cv/blob/master/cv/cv.Rmd#L31-L41
 pubs <- scholar::get_publications("5QzX_vUAAAAJ") %>% 
@@ -51,15 +56,14 @@ pubs <- scholar::get_publications("5QzX_vUAAAAJ") %>%
 
 # Education
 
-```{r}
-library(tibble)
-tribble(
-  ~ Degree, ~ Year, ~ Institution, ~ Where,
-  "Informal studies", "1889-91", "Flying University", "Warsaw, Poland",
-  "Master of Physics", "1893", "Sorbonne Université", "Paris, France",
-  "Master of Mathematics", "1894", "Sorbonne Université", "Paris, France"
-) %>% 
-  detailed_entries(Degree, Year, Institution, Where)
+```{r show-education}
+education.data %>%
+  detailed_entries(
+    what = `education-summary.role-title`,
+    when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
+    with = `education-summary.organization.name`,
+    where = `education-summary.organization.address.city`
+  )
 ```
 
 # Nobel Prizes
