@@ -24,6 +24,25 @@ if (.Platform$OS.type == 'windows') {
 library(vitae)
 ```
 
+```{r get-data}
+# Publications from Google Scholar
+# copied from https://github.com/seabbs/cv/blob/master/cv/cv.Rmd#L31-L41
+pubs <- scholar::get_publications("5QzX_vUAAAAJ") %>% 
+  dplyr::mutate(
+    author = author %>% 
+      as.character %>% 
+      stringr::str_trim(),
+    journal = journal %>% 
+      replace(journal %in% "bioRxiv", "BioRxiv"), 
+    first_author = dplyr::case_when(
+      stringr::str_starts(author, "E Kalenkovich") ~ TRUE,
+      TRUE ~ FALSE),
+    preprint = dplyr::case_when(
+      journal %in% c("bioRxiv", "BioRxiv") ~ TRUE,
+      TRUE ~ FALSE)) %>% 
+  dplyr::arrange(desc(year))
+```
+
 # Some stuff about me
 
  * I poisoned myself doing research.
@@ -60,11 +79,13 @@ tribble(
 
 # Publications
 
-```{r}
-library(dplyr)
-knitr::write_bib(c("vitae", "tibble"), "packages.bib")
-
-bibliography_entries("packages.bib") %>%
-  arrange(desc(author$family), issued)
+```{r show-all-pubs}
+pubs %>% 
+  detailed_entries(
+    what = title,
+    when = as.character(year),
+    with = author,
+    where = journal, 
+    .protect = TRUE
+  )
 ```
-
