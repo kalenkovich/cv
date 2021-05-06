@@ -61,7 +61,8 @@ education.data %>%
   detailed_entries(
     what = `education-summary.role-title`,
     when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
-    with = `education-summary.organization.name`,
+    with = glue::glue("{`education-summary.organization.name`}, 
+      {`education-summary.department-name`}"),
     where = `education-summary.organization.address.city`
   )
 ```
