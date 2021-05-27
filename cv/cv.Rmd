@@ -33,9 +33,10 @@ library(tibble)
 library(readr)
 library(glue)
 library(dplyr)
+library(magrittr)
 ```
 
-```{r get-data}
+```{r get-data, include = FALSE}
 # Education from Orcid
 education.data <- rorcid::orcid_educations("0000-0002-4606-4179")$`0000-0002-4606-4179`$`affiliation-group`$summaries %>%
   dplyr::bind_rows()
@@ -75,6 +76,13 @@ skills <- read_csv(
   group_by(category) %>%
   mutate(skill = paste(skill, collapse = ", ")) %>% 
   ungroup
+
+be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
+  ungroup %>%
+  mutate(
+    author = vitae:::obj_print_data.list_of_csl_names(author),
+    date_string = format(vitae:::vec_cast.Date.csl_dates(issued), '%B %Y')) %>%
+  {filter(., genre == 'Poster') ->> posters2}
 ```
 
 # Education
@@ -148,4 +156,18 @@ jobs.industry %>%
     with = company,
     where = where,
     why = details)
+```
+
+# Posters
+
+```{r posters2}
+posters2 %>%
+  arrange(desc(issued)) %>%
+  as_tibble %>%
+  detailed_entries(
+    what = author,
+    when = date_string,
+    with = title,
+    where = glue('{event}, {`event-place`}')
+  )
 ```
