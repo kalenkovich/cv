@@ -67,6 +67,7 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
     date = vitae:::vec_cast.Date.csl_dates(issued),
     date_string = format(date, '%B %Y'),
     year = format(date, '%Y')) %>%
+  as_tibble %>%
   rename(journal = `container-title`) %T>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
   {filter(., type == 'article-journal') ->> articles.published}
@@ -112,7 +113,6 @@ skills %>%
 
 ```{r show-all-pubs}
 articles.published %>%
-  as_tibble %>%
   detailed_entries(
     what = author,
     when = as.character(year),
@@ -150,7 +150,6 @@ jobs.industry %>%
 ```{r posters2}
 posters2 %>%
   arrange(desc(issued)) %>%
-  as_tibble %>%
   detailed_entries(
     what = author,
     when = date_string,
