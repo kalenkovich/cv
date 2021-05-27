@@ -50,6 +50,10 @@ pubs <- scholar::get_publications("5QzX_vUAAAAJ") %>%
       TRUE ~ FALSE)) %>% 
   dplyr::arrange(desc(year))
 
+jobs.briefly <- read_csv(
+  here::here('data', 'jobs_briefly.csv'),
+  col_types = cols(.default = "c"))
+
 jobs.academic <- read_csv(
   here::here('data', 'jobs_academic.csv'),
   col_types = cols(.default = "c"))
@@ -87,6 +91,20 @@ education.data %>%
   )
 ```
 
+# Experience (briefly)
+
+More details in the "Jobs" section below.
+
+```{r jobs-brief}
+jobs.briefly %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = where,
+    why = details)
+```
+
 # Skills
 
 ```{r}
@@ -108,9 +126,9 @@ pubs %>%
     .protect = TRUE
   )
 ```
-# Experience
+# Jobs
 
-## Academic jobs
+## Academic
 
 ```{r jobs-academic}
 jobs.academic %>% 
@@ -121,7 +139,7 @@ jobs.academic %>%
     where = where,
     why = details)
 ```
-## Non-academic jobs
+## Non-academic
 
 ```{r jobs-industry}
 jobs.industry %>% 
