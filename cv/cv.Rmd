@@ -10,6 +10,7 @@ twitter: kalenkovich
 github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::awesomecv
+headcolor: "000000"
 aboutme: >
   I am an informal pre-doc at the Institute for Cogntive Neuroscience at HSE University.
   Currently, I am running an MEG project studying syntax processing and a mousetracking project studying processing of negated sentences.
