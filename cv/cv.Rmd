@@ -23,6 +23,8 @@ if (.Platform$OS.type == 'windows') {
 }
 library(vitae)
 library(tibble)
+library(readr)
+library(glue)
 ```
 
 ```{r get-data}
@@ -46,6 +48,10 @@ pubs <- scholar::get_publications("5QzX_vUAAAAJ") %>%
       journal %in% c("bioRxiv", "BioRxiv") ~ TRUE,
       TRUE ~ FALSE)) %>% 
   dplyr::arrange(desc(year))
+
+jobs.academic <- read_csv(
+  here::here('data', 'jobs_academic.csv'),
+  col_types = cols(.default = "c"))
 ```
 
 # About me
@@ -80,4 +86,17 @@ pubs %>%
     where = journal, 
     .protect = TRUE
   )
+```
+# Experience
+
+## Academic jobs
+
+```{r jobs-academic}
+jobs.academic %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = where,
+    why = details)
 ```
