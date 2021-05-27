@@ -25,6 +25,7 @@ library(vitae)
 library(tibble)
 library(readr)
 library(glue)
+library(dplyr)
 ```
 
 ```{r get-data}
@@ -56,6 +57,13 @@ jobs.academic <- read_csv(
 jobs.industry <- read_csv(
   here::here('data', 'jobs_industry.csv'),
   col_types = cols(.default = "c"))
+
+skills <- read_csv(
+  here::here('data', 'skills.csv'),
+  col_types = cols(.default = "c")) %>% 
+  group_by(category) %>%
+  mutate(skill = paste(skill, collapse = ", ")) %>% 
+  ungroup
 ```
 
 # About me
@@ -78,6 +86,15 @@ education.data %>%
     where = `education-summary.organization.address.city`
   )
 ```
+
+# Skills
+
+```{r}
+skills %>% 
+  detailed_entries(what = skill, with = category)
+```
+
+\pagebreak
 
 # Publications
 
