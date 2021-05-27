@@ -10,6 +10,12 @@ twitter: kalenkovich
 github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::awesomecv
+aboutme: >
+  I am an informal pre-doc at the Institute for Cogntive Neuroscience at HSE University.
+  Currently, I am running an MEG project studying syntax processing and a mousetracking project studying processing of negated sentences.
+  In my spare time, I am involved in several other mini-projects: a study on the role of phonemes in speech perception, development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data from the BIOMAG 2021 competition.
+  I do my current best to work with computational reproducibility and open science practices in mind.
+  Here and there I make small contributions to scientific open-source projects.
 ---
 
 ```{r setup, include=FALSE}
@@ -69,14 +75,6 @@ skills <- read_csv(
   mutate(skill = paste(skill, collapse = ", ")) %>% 
   ungroup
 ```
-
-# About me
-
-I am an informal pre-doc at the Institute for Cogntive Neuroscience at HSE University.
-Currently, I am running an MEG project studying syntax processing and a mousetracking project studying processing of negated sentences.
-In my spare time, I am involved in several other mini-projects: a study on the role of phonemes in speech perception, development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data from the BIOMAG 2021 competition.
-I do my current best to work with computational reproducibility and open science practices in mind.
-Here and there I make small contributions to scientific open-source projects.
 
 # Education
 
