@@ -114,9 +114,9 @@ skills %>%
 articles.published %>%
   as_tibble %>%
   detailed_entries(
-    what = title,
+    what = author,
     when = as.character(year),
-    with = author,
+    with = title,
     where = journal
   )
 ```
