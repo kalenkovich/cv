@@ -70,7 +70,8 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
   as_tibble %>%
   rename(journal = `container-title`) %T>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
-  {filter(., type == 'article-journal') ->> articles.published}
+  {filter(., type == 'article-journal') ->> articles.published} %T>%
+  {filter(., type == 'manuscript') ->> articles.in.progress}
 ```
 
 # Education
@@ -111,7 +112,9 @@ skills %>%
 
 # Publications
 
-```{r show-all-pubs}
+## Published
+
+```{r articles-published}
 articles.published %>%
   detailed_entries(
     what = author,
@@ -120,6 +123,18 @@ articles.published %>%
     where = journal
   )
 ```
+## In progress
+
+```{r articles-in-progress}
+articles.in.progress %>%
+  detailed_entries(
+    what = author,
+    with = title,
+    # In Zotero, the comment is under "type". No idea how this became "genre".
+    when = genre
+  )
+```
+
 # Jobs
 
 ## Academic
