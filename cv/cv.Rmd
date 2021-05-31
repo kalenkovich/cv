@@ -62,6 +62,7 @@ skills <- read_csv(
 
 be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
   ungroup %>%
+  arrange(desc(issued)) %>%
   mutate(
     author = vitae:::obj_print_data.list_of_csl_names(author),
     date = vitae:::vec_cast.Date.csl_dates(issued),
@@ -72,6 +73,10 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
   {filter(., type == 'article-journal') ->> articles.published} %T>%
   {filter(., type == 'manuscript') ->> articles.in.progress}
+
+training <- read_csv(
+  here::here('data', 'training.csv'),
+  col_types = cols(.default = "c"))
 ```
 
 # Education
@@ -172,3 +177,28 @@ posters2 %>%
     where = glue('{event}, {`event-place`}')
   )
 ```
+
+# Training
+
+```{r training, results='asis'}
+training.types <- unique(training$type)
+
+for (training.type in training.types) {
+  cat('##', training.type, '\n')
+
+  training %>%
+    filter(type == training.type) %>%
+    arrange(desc(when)) %>%
+    detailed_entries(what = glue("{with}, {where}"), 
+                     where = when,
+                     why = why, 
+                     with = what,
+                     .protect = FALSE) %>%
+    knitr::knit_print() %>%
+    cat
+
+
+  cat('\n\n')
+}
+```
+
