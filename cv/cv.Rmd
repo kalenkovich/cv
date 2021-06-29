@@ -12,9 +12,9 @@ date: "`r format(Sys.time(), '%B %Y')`"
 output: vitae::awesomecv
 headcolor: "000000"
 aboutme: >
-  I am an informal pre-doc at the Institute for Cogntive Neuroscience at HSE University.
-  Currently, I am running an MEG project studying syntax processing and a mousetracking project studying processing of negated sentences.
-  In my spare time, I am involved in several other mini-projects: a study on the role of phonemes in speech perception, development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data from the BIOMAG 2021 competition.
+  I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
+  Meanwhile, I am working on three psycho-/neurolinguistic projects: a study of syntax processing using MEG, a study of negation processing using mouse tracking, and a study of phoneme perception using selective adaptation.
+  In my spare time, I am involved in several other mini-projects: development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data for a BIOMAG 2022 competition, writing a tutorial on the use of workflow management systems in M/EEG data analysis, reproducing early PDP models (such as interactive activation model).
   I do my current best to work with computational reproducibility and open science practices in mind.
   Here and there I make small contributions to scientific open-source projects.
 ---
