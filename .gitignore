@@ -34,3 +34,6 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+cv/cv.aux
+cv/cv.out
+cv/cv.pdf
