@@ -216,7 +216,18 @@ for (training.type in training.types) {
 
 # Teaching
 
-```{r teaching}
-teaching %>% 
+## University courses
+
+```{r teaching-uni}
+teaching %>%
+  filter(type == "University course")  %>%
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
+
+## Mini courses
+
+```{r teaching-summer-schools}
+teaching %>%
+  filter(type == "Mini course") %>%
   detailed_entries(what = with, when = when, with = what, where = where, why = why)
 ```
