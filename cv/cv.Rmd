@@ -79,19 +79,6 @@ training <- read_csv(
   col_types = cols(.default = "c"))
 ```
 
-# Education
-
-```{r show-education}
-education.data %>%
-  detailed_entries(
-    what = `education-summary.role-title`,
-    when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
-    with = glue::glue("{`education-summary.organization.name`}, 
-      {`education-summary.department-name`}"),
-    where = `education-summary.organization.address.city`
-  )
-```
-
 # Experience briefly (see "Jobs" for details)
 
 ```{r jobs-brief}
@@ -109,6 +96,19 @@ jobs.briefly %>%
 ```{r}
 skills %>% 
   detailed_entries(what = skill, with = category)
+```
+
+# Education
+
+```{r show-education}
+education.data %>%
+  detailed_entries(
+    what = `education-summary.role-title`,
+    when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
+    with = glue::glue("{`education-summary.organization.name`}, 
+      {`education-summary.department-name`}"),
+    where = `education-summary.organization.address.city`
+  )
 ```
 
 \pagebreak
