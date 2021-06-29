@@ -92,9 +92,7 @@ education.data %>%
   )
 ```
 
-# Experience (briefly)
-
-More details in the "Jobs" section below.
+# Experience briefly (see "Jobs" for details)
 
 ```{r jobs-brief}
 jobs.briefly %>% 
