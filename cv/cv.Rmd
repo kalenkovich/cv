@@ -9,7 +9,9 @@ email: "e.kalenkovich@gmail.com"
 twitter: kalenkovich
 github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
-output: vitae::awesomecv
+output:
+  vitae::awesomecv:
+    keep_tex: yes
 headcolor: "000000"
 aboutme: >
   I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
