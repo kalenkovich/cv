@@ -71,6 +71,12 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
     date_string = format(date, '%B %Y'),
     year = format(date, '%Y')) %>%
   as_tibble %>%
+  # Highlight my name for vanity purposes
+  mutate(author = stringr::str_replace(author,
+                                       '([^,]*Kalenkovich[^,]*)',
+                                       '\\\\textbf{\\1}')) %>%
+  # Escape # in titles
+  mutate(title = stringr::str_replace(title, '#', '\\\\#')) %>%
   rename(journal = `container-title`) %T>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
   {filter(., type == 'article-journal') ->> articles.published} %T>%
@@ -128,7 +134,8 @@ articles.published %>%
     what = author,
     when = as.character(year),
     with = title,
-    where = journal
+    where = journal,
+    .protect = FALSE
   )
 ```
 ## In progress
@@ -139,7 +146,8 @@ articles.in.progress %>%
     what = author,
     with = title,
     # In Zotero, the comment is under "type". No idea how this became "genre".
-    when = genre
+    when = genre,
+    .protect = FALSE
   )
 ```
 
@@ -177,7 +185,8 @@ posters2 %>%
     what = author,
     when = date_string,
     with = title,
-    where = glue('{event}, {`event-place`}')
+    where = glue('{event}, {`event-place`}'),
+    .protect = FALSE
   )
 ```
 
