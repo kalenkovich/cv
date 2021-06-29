@@ -77,6 +77,9 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
 training <- read_csv(
   here::here('data', 'training.csv'),
   col_types = cols(.default = "c"))
+
+teaching <- read_csv(here::here("data", "teaching.csv"),
+                     col_types = cols(.default = "c"))
 ```
 
 # Experience briefly (see "Jobs" for details)
@@ -200,3 +203,9 @@ for (training.type in training.types) {
 }
 ```
 
+# Teaching
+
+```{r teaching}
+teaching %>% 
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
