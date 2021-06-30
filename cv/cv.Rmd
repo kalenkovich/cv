@@ -88,6 +88,10 @@ training <- read_csv(
 
 teaching <- read_csv(here::here("data", "teaching.csv"),
                      col_types = cols(.default = "c"))
+
+extracurricular <- read_csv(
+  here::here("data", "extracurricular.csv"),
+  col_types = cols(.default = "c"))
 ```
 
 # Experience briefly (see "Jobs" for details)
@@ -230,4 +234,11 @@ teaching %>%
 teaching %>%
   filter(type == "Mini course") %>%
   detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
+
+# Extracurricular activity
+
+```{r extracurricular}
+extracurricular %>%
+  detailed_entries(with = what, what = when, why = why)
 ```
