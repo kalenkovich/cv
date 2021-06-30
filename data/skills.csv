@@ -1,0 +1,26 @@
+category, skill
+Analytical, "data analysis"
+Analytical, "statistical analysis (NHST/Bayesian)"
+Analytical, "computationally reproducible research"
+Analytical, "MEEG data analysis (sensor/time-frequency/sources)"
+Analytical, "sample size assessment (NHST/Bayesian)"
+Analytical, "not scared of Mathematics"
+Programming, Python
+Programming, R
+Programming, Matlab
+Programming, custom online experiment building (Django/HTML/css/JavaScript)"
+Programming, SQL
+Programming, Bash
+Packages, tidyverse
+Packages, lme4
+Packages, simr/faux/BFDA (simulation-based sample size assessment)
+Packages, papaja
+Packages, mne-python
+Packages, psychopy
+Packages, scipy/numpy/pandas/matplotlib
+Packages, PyQT
+Tools, conda
+Tools, renv
+Tools, Snakemake
+Tools, Git
+Tools, Django

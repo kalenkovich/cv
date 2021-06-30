@@ -1,16 +1,24 @@
 ---
-name: Marie
-surname: Curie
-position: "Professor"
-address: "School of Physics & Chemistry, École Normale Supérieure"
-phone: +1 22 3333 4444
-www: mariecurie.com
-email: "Marie.Curie@ens.fr"
-twitter: mariecurie
-github: mariecurie
-linkedin: mariecurie
+name: Evgenii
+surname: Kalenkovich
+position: "Junior Research Fellow"
+address: "Institute for Cognitive Neuroscience, HSE University, Moscow, Russia"
+phone: +7 958 823 01 99
+www: "kalenkovich.netlify.app"
+email: "e.kalenkovich@gmail.com"
+twitter: kalenkovich
+github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
-output: vitae::awesomecv
+output:
+  vitae::awesomecv:
+    keep_tex: yes
+headcolor: 009ACD
+aboutme: >
+  I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
+  Meanwhile, I am working on three psycho-/neurolinguistic projects: a study of syntax processing using MEG, a study of negation processing using mouse tracking, and a study of phoneme perception using selective adaptation.
+  In my spare time, I am involved in several other mini-projects: development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data for a BIOMAG 2022 competition, writing a tutorial on the use of workflow management systems in M/EEG data analysis, reproducing early PDP models (such as interactive activation model).
+  I do my current best to work with computational reproducibility and open science practices in mind.
+  Here and there I make small contributions to scientific open-source projects.
 ---
 
 ```{r setup, include=FALSE}
@@ -23,49 +31,214 @@ if (.Platform$OS.type == 'windows') {
   Sys.setlocale(category = 'LC_ALL','en_US.UTF-8')
 }
 library(vitae)
+library(tibble)
+library(readr)
+library(glue)
+library(dplyr)
+library(magrittr)
 ```
 
-# Some stuff about me
+```{r get-data, include = FALSE}
+# Education from Orcid
+education.data <- rorcid::orcid_educations("0000-0002-4606-4179")$`0000-0002-4606-4179`$`affiliation-group`$summaries %>%
+  dplyr::bind_rows()
 
- * I poisoned myself doing research.
- * I was the first woman to win a Nobel prize
- * I was the first person and only woman to win a Nobel prize in two different sciences.
+jobs.briefly <- read_csv(
+  here::here('data', 'jobs_briefly.csv'),
+  col_types = cols(.default = "c"))
+
+jobs.academic <- read_csv(
+  here::here('data', 'jobs_academic.csv'),
+  col_types = cols(.default = "c"))
+
+jobs.industry <- read_csv(
+  here::here('data', 'jobs_industry.csv'),
+  col_types = cols(.default = "c"))
+
+skills <- read_csv(
+  here::here('data', 'skills.csv'),
+  col_types = cols(.default = "c")) %>% 
+  group_by(category) %>%
+  mutate(skill = paste(skill, collapse = ", ")) %>% 
+  ungroup
+
+be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
+  ungroup %>%
+  arrange(desc(issued)) %>%
+  mutate(
+    author = vitae:::obj_print_data.list_of_csl_names(author),
+    date = vitae:::vec_cast.Date.csl_dates(issued),
+    date_string = format(date, '%B %Y'),
+    year = format(date, '%Y')) %>%
+  as_tibble %>%
+  # Highlight my name for vanity purposes
+  mutate(author = stringr::str_replace(author,
+                                       '([^,]*Kalenkovich[^,]*)',
+                                       '\\\\textbf{\\1}')) %>%
+  # Escape # in titles
+  mutate(title = stringr::str_replace(title, '#', '\\\\#')) %>%
+  rename(journal = `container-title`) %T>%
+  {filter(., genre == 'Poster') ->> posters2} %T>%
+  {filter(., type == 'article-journal') ->> articles.published} %T>%
+  {filter(., type == 'manuscript') ->> articles.in.progress}
+
+training <- read_csv(
+  here::here('data', 'training.csv'),
+  col_types = cols(.default = "c"))
+
+teaching <- read_csv(here::here("data", "teaching.csv"),
+                     col_types = cols(.default = "c"))
+
+extracurricular <- read_csv(
+  here::here("data", "extracurricular.csv"),
+  col_types = cols(.default = "c"))
+```
+
+# Experience briefly (see "Jobs" for details)
+
+```{r jobs-brief}
+jobs.briefly %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = where,
+    why = details)
+```
+
+# Skills
+
+```{r}
+skills %>% 
+  detailed_entries(what = skill, with = category)
+```
 
 # Education
 
-```{r}
-library(tibble)
-tribble(
-  ~ Degree, ~ Year, ~ Institution, ~ Where,
-  "Informal studies", "1889-91", "Flying University", "Warsaw, Poland",
-  "Master of Physics", "1893", "Sorbonne Université", "Paris, France",
-  "Master of Mathematics", "1894", "Sorbonne Université", "Paris, France"
-) %>% 
-  detailed_entries(Degree, Year, Institution, Where)
-```
-
-# Nobel Prizes
-
-```{r}
-tribble(
-  ~Year, ~Type, ~Desc,
-  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
-  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
-) %>% 
-  brief_entries(
-    glue::glue("Nobel Prize in {Type}"),
-    Year, 
-    Desc
+```{r show-education}
+education.data %>%
+  detailed_entries(
+    what = `education-summary.role-title`,
+    when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
+    with = glue::glue("{`education-summary.organization.name`}, 
+      {`education-summary.department-name`}"),
+    where = `education-summary.organization.address.city`
   )
 ```
 
+\pagebreak
+
 # Publications
 
-```{r}
-library(dplyr)
-knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+## Published
 
-bibliography_entries("packages.bib") %>%
-  arrange(desc(author$family), issued)
+```{r articles-published}
+articles.published %>%
+  detailed_entries(
+    what = author,
+    when = as.character(year),
+    with = title,
+    where = journal,
+    .protect = FALSE
+  )
+```
+## In progress
+
+```{r articles-in-progress}
+articles.in.progress %>%
+  detailed_entries(
+    what = author,
+    with = title,
+    # In Zotero, the comment is under "type". No idea how this became "genre".
+    when = genre,
+    .protect = FALSE
+  )
 ```
 
+# Jobs
+
+## Academic
+
+```{r jobs-academic}
+jobs.academic %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = where,
+    why = details)
+```
+## Non-academic
+
+```{r jobs-industry}
+jobs.industry %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = where,
+    why = details)
+```
+
+# Posters
+
+```{r posters2}
+posters2 %>%
+  arrange(desc(issued)) %>%
+  detailed_entries(
+    what = author,
+    when = date_string,
+    with = title,
+    where = glue('{event}, {`event-place`}'),
+    .protect = FALSE
+  )
+```
+
+# Training
+
+```{r training, results='asis'}
+training.types <- unique(training$type)
+
+for (training.type in training.types) {
+  cat('##', training.type, '\n')
+
+  training %>%
+    filter(type == training.type) %>%
+    arrange(desc(when)) %>%
+    detailed_entries(what = glue("{with}, {where}"), 
+                     where = when,
+                     why = why, 
+                     with = what,
+                     .protect = FALSE) %>%
+    knitr::knit_print() %>%
+    cat
+
+
+  cat('\n\n')
+}
+```
+
+# Teaching
+
+## University courses
+
+```{r teaching-uni}
+teaching %>%
+  filter(type == "University course")  %>%
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
+
+## Mini courses
+
+```{r teaching-summer-schools}
+teaching %>%
+  filter(type == "Mini course") %>%
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
+
+# Extracurricular activity
+
+```{r extracurricular}
+extracurricular %>%
+  detailed_entries(with = what, what = when, why = why)
+```
