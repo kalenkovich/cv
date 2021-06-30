@@ -12,7 +12,7 @@ date: "`r format(Sys.time(), '%B %Y')`"
 output:
   vitae::awesomecv:
     keep_tex: yes
-headcolor: "000000"
+headcolor: 009ACD
 aboutme: >
   I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
   Meanwhile, I am working on three psycho-/neurolinguistic projects: a study of syntax processing using MEG, a study of negation processing using mouse tracking, and a study of phoneme perception using selective adaptation.
