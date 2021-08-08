@@ -1,0 +1,7 @@
+name: render-cv
+on: [workflow_dispatch]
+jobs:
+  render-cv:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, world!"
