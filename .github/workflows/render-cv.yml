@@ -4,4 +4,7 @@ jobs:
   render-cv:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, world!"
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '4.0.3'
+      - run: Rscript -e 'print(R.Version())'
