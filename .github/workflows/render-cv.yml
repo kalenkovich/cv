@@ -8,3 +8,8 @@ jobs:
         with:
           r-version: '4.0.3'
       - run: Rscript -e 'print(R.Version())'
+      
+      - uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.12'      
+      - run: pandoc --version
