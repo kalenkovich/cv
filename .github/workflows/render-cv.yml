@@ -34,3 +34,20 @@ jobs:
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
+          
+      - name: Render cv.Rmd
+        run: |
+          bash render.sh
+          FILE=cv/cv.pdf
+          if [ -f "$FILE" ]; then
+              echo "$FILE exists."
+          else 
+              echo "$FILE does not exist."
+          fi
+          FILE=cv/cv.tex
+          if [ -f "$FILE" ]; then
+              echo "$FILE exists."
+          else 
+              echo "$FILE does not exist."
+          fi
+          
