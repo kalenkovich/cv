@@ -36,6 +36,8 @@ jobs:
           renv::restore()
           
       - name: Render cv.Rmd
+        env:
+          ORCID_TOKEN: ${{ secrets.ORCID_TOKEN }}
         run: |
           bash render.sh
           FILE=cv/cv.pdf
