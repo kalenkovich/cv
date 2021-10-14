@@ -39,9 +39,9 @@ library(magrittr)
 ```
 
 ```{r get-data, include = FALSE}
-# Education from Orcid
-education.data <- rorcid::orcid_educations("0000-0002-4606-4179")$`0000-0002-4606-4179`$`affiliation-group`$summaries %>%
-  dplyr::bind_rows()
+education.data <- read_csv(
+  here::here('data', 'education.csv'),
+  col_types = cols(.default = "c"))
 
 jobs.briefly <- read_csv(
   here::here('data', 'jobs_briefly.csv'),
@@ -118,11 +118,10 @@ skills %>%
 ```{r show-education}
 education.data %>%
   detailed_entries(
-    what = `education-summary.role-title`,
-    when = glue::glue("{`education-summary.start-date.year.value`} - {`education-summary.end-date.year.value`}"),
-    with = glue::glue("{`education-summary.organization.name`}, 
-      {`education-summary.department-name`}"),
-    where = `education-summary.organization.address.city`
+    what = title,
+    when = glue::glue("{start_date} - {end_date}"),
+    with = glue::glue("{university}, {department}"),
+    where = city
   )
 ```
 
