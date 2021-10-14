@@ -118,7 +118,7 @@ skills %>%
 ```{r show-education}
 education.data %>%
   detailed_entries(
-    what = title,
+    what = glue::glue("{title}, \"{thesis_title}\""),
     when = glue::glue("{start_date} - {end_date}"),
     with = glue::glue("{university}, {department}"),
     where = city
