@@ -163,7 +163,7 @@ jobs.academic %>%
   detailed_entries(
     what = role,
     when = glue("{start_date}--{end_date}"),
-    with = company,
+    with = glue("{company}, {website}"), 
     where = where,
     why = details)
 ```
@@ -174,7 +174,7 @@ jobs.industry %>%
   detailed_entries(
     what = role,
     when = glue("{start_date}--{end_date}"),
-    with = company,
+    with = glue("{company}, {website}"),
     where = where,
     why = details)
 ```
