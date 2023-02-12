@@ -14,11 +14,11 @@ output:
     keep_tex: yes
 headcolor: 009ACD
 aboutme: >
-  I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
-  Meanwhile, I am working on three psycho-/neurolinguistic projects: a study of syntax processing using MEG, a study of negation processing using mouse tracking, and a study of phoneme perception using selective adaptation.
-  In my spare time, I am involved in several other mini-projects: development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data for a BIOMAG 2022 competition, writing a tutorial on the use of workflow management systems in M/EEG data analysis, reproducing early PDP models (such as interactive activation model).
-  I do my current best to work with computational reproducibility and open science practices in mind.
-  Here and there I make small contributions to scientific open-source projects.
+  I am a data science specialist in the Bergelson lab where we study language acquisition in babies. My role is to provide technical support for research activities, including managing data and code, infrastructure and documentation, and assisting colleagues with hands-on support and guidance. I strive to improve the efficiency, reproducibility, and robustness of data processes.
+
+  I have a background in mathematics and cognitive science, making me well-suited for my role in the lab. Prior to my current position, I led several projects in psycho- and neurolinguistics and worked as a data analyst in the banking industry.
+
+  In my free time, I enjoy reading about the intersection of cognitive computational modeling, developmental psychology, and linguistics, and hope to make contributions to this field in the future. I also enjoy indoor bouldering and introducing friends to the sport.
 ---
 
 ```{r setup, include=FALSE}
