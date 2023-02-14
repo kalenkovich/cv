@@ -1,7 +1,7 @@
 ---
 name: Evgenii
 surname: Kalenkovich
-position: "Associate in Research"
+position: "Research Data Specialist"
 address: "Bergelson Lab, Duke University"
 phone: "+19842602401"
 email: "e.kalenkovich@gmail.com"
@@ -12,7 +12,7 @@ output:
     keep_tex: yes
 headcolor: 009ACD
 aboutme: >
-  I am a data science specialist in the Bergelson lab where we study language acquisition in babies. My role is to provide technical support for research activities, including managing data and code, infrastructure and documentation, and assisting colleagues with hands-on support and guidance. I strive to improve the efficiency, reproducibility, and robustness of data processes.
+  I am a research data specialist in the Bergelson lab where we study language acquisition - babies learning language. My role is to provide technical support for research activities, including managing data, code, infrastructure, and documentation, and assisting colleagues with hands-on support and guidance. I strive to improve the efficiency, reproducibility, and robustness of data processes.
 
   I have a background in mathematics and cognitive science, making me well-suited for my role in the lab. Prior to my current position, I led several projects in psycho- and neurolinguistics and worked as a data analyst in the banking industry.
 
@@ -82,7 +82,7 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
   rename(journal = `container-title`) %T>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
   {filter(., type == 'article-journal') ->> articles.published} %T>%
-  {filter(., type == 'manuscript') ->> articles.in.progress}
+  {filter(., type %in% c('manuscript', 'report')) ->> articles.in.progress}
 
 training <- read_csv(
   here::here('data', 'training.csv'),
