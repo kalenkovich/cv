@@ -43,7 +43,11 @@ education.data <- read_csv(
 
 experience <- read_csv(
   here::here('data', 'experience.csv'),
-  col_types = cols(.default = "c"))
+  col_types = cols(.default = "c")) %>%
+  mutate(sort_date = replace(end_date, end_date == 'Present',
+                             'November 2300'),
+         sort_date = lubridate::parse_date_time(sort_date, 'b y')) %>%
+  arrange(by = desc(sort_date))
 
 jobs.academic <- read_csv(
   here::here('data', 'jobs_academic.csv'),
