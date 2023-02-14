@@ -1,12 +1,10 @@
 ---
 name: Evgenii
 surname: Kalenkovich
-position: "Junior Research Fellow"
-address: "Institute for Cognitive Neuroscience, HSE University, Moscow, Russia"
-phone: +7 958 823 01 99
-www: "kalenkovich.netlify.app"
+position: "Associate in Research"
+address: "Bergelson Lab, Duke University"
+phone: "+19842602401"
 email: "e.kalenkovich@gmail.com"
-twitter: kalenkovich
 github: kalenkovich
 date: "`r format(Sys.time(), '%B %Y')`"
 output:
