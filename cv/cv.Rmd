@@ -95,12 +95,11 @@ extracurricular <- read_csv(
 # Experience
 
 ```{r jobs-brief}
-jobs.briefly %>% 
+experience %>% 
   detailed_entries(
-    what = role,
     when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
+    with = role,
+    where = glue("{company}, {where}"),
     why = details)
 ```
 
