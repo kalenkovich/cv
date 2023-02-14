@@ -41,8 +41,8 @@ education.data <- read_csv(
   here::here('data', 'education.csv'),
   col_types = cols(.default = "c"))
 
-jobs.briefly <- read_csv(
-  here::here('data', 'jobs_briefly.csv'),
+experience <- read_csv(
+  here::here('data', 'experience.csv'),
   col_types = cols(.default = "c"))
 
 jobs.academic <- read_csv(
@@ -92,7 +92,7 @@ extracurricular <- read_csv(
   col_types = cols(.default = "c"))
 ```
 
-# Experience briefly (see "Jobs" for details)
+# Experience
 
 ```{r jobs-brief}
 jobs.briefly %>% 
@@ -102,13 +102,6 @@ jobs.briefly %>%
     with = company,
     where = where,
     why = details)
-```
-
-# Skills
-
-```{r}
-skills %>% 
-  detailed_entries(what = skill, with = category)
 ```
 
 # Education
@@ -122,8 +115,6 @@ education.data %>%
     where = city
   )
 ```
-
-\pagebreak
 
 # Publications
 
@@ -152,31 +143,6 @@ articles.in.progress %>%
   )
 ```
 
-# Jobs
-
-## Academic
-
-```{r jobs-academic}
-jobs.academic %>% 
-  detailed_entries(
-    what = role,
-    when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
-    why = details)
-```
-## Non-academic
-
-```{r jobs-industry}
-jobs.industry %>% 
-  detailed_entries(
-    what = role,
-    when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
-    why = details)
-```
-
 # Posters
 
 ```{r posters2}
@@ -189,6 +155,24 @@ posters2 %>%
     where = glue('{event}, {`event-place`}'),
     .protect = FALSE
   )
+```
+
+# Teaching
+
+## University courses
+
+```{r teaching-uni}
+teaching %>%
+  filter(type == "University course")  %>%
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+```
+
+## Mini courses
+
+```{r teaching-summer-schools}
+teaching %>%
+  filter(type == "Mini course") %>%
+  detailed_entries(what = with, when = when, with = what, where = where, why = why)
 ```
 
 # Training
@@ -215,23 +199,6 @@ for (training.type in training.types) {
 }
 ```
 
-# Teaching
-
-## University courses
-
-```{r teaching-uni}
-teaching %>%
-  filter(type == "University course")  %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
-```
-
-## Mini courses
-
-```{r teaching-summer-schools}
-teaching %>%
-  filter(type == "Mini course") %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
-```
 
 # Extracurricular activity
 
@@ -239,3 +206,16 @@ teaching %>%
 extracurricular %>%
   detailed_entries(with = what, what = when, why = why)
 ```
+
+\pagebreak
+
+
+# Skills
+
+```{r}
+skills %>% 
+  detailed_entries(what = skill, with = category)
+```
+
+
+
