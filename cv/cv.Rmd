@@ -96,13 +96,41 @@ extracurricular <- read_csv(
   col_types = cols(.default = "c"))
 ```
 
-# Experience
+# Current Position
 
-```{r jobs-brief}
-experience %>% 
+```{r jobs-current}
+experience %>%
+  filter(status == 'current') %>%
   detailed_entries(
     when = glue("{start_date}--{end_date}"),
     with = role,
+    what = department,
+    where = glue("{company}, {where}"),
+    why = details)
+```
+
+# Research Experience
+
+```{r jobs-previous-academic}
+experience %>%
+  filter(status == 'previous' & type == 'academic') %>%
+  detailed_entries(
+    when = glue("{start_date}--{end_date}"),
+    with = role,
+    what = department,
+    where = glue("{company}, {where}"),
+    why = details)
+```
+
+# Non-Academic Jobs
+
+```{r jobs-non-academic}
+experience %>%
+  filter(type == 'non-academic') %>%
+  detailed_entries(
+    when = glue("{start_date}--{end_date}"),
+    with = role,
+    what = department,
     where = glue("{company}, {where}"),
     why = details)
 ```
