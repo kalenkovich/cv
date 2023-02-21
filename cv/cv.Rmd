@@ -44,9 +44,11 @@ education.data <- read_csv(
 experience <- read_csv(
   here::here('data', 'experience.csv'),
   col_types = cols(.default = "c")) %>%
-  mutate(sort_date = replace(end_date, end_date == 'Present',
-                             'November 2300'),
-         sort_date = lubridate::parse_date_time(sort_date, 'b y')) %>%
+  mutate(
+    sort_date = replace(end_date, end_date == 'Present','November 2300'),
+    sort_date = lubridate::parse_date_time(sort_date, 'b y'),
+    when = glue("{start_date} -- {end_date}")) %>%
+    # sort_date = lubridate::parse_date_time(start_date, 'b y')) %>%
   arrange(by = desc(sort_date))
 
 jobs.academic <- read_csv(
@@ -102,24 +104,22 @@ extracurricular <- read_csv(
 experience %>%
   filter(status == 'current') %>%
   detailed_entries(
-    when = glue("{start_date}--{end_date}"),
-    with = role,
-    what = department,
-    where = glue("{company}, {where}"),
-    why = details)
+      when = when,
+      # with = glue("\"project name\""),
+      what = if_else(is.na(short), glue('{role}'), glue("{role}, {short}")),
+      why = details,
+      where = glue("\\newline Supervised by {supervisor}, {department}, {company},    {where}"))
 ```
 
-# Research Experience
+# Academic Experience
 
 ```{r jobs-previous-academic}
 experience %>%
   filter(status == 'previous' & type == 'academic') %>%
-  detailed_entries(
-    when = glue("{start_date}--{end_date}"),
-    with = role,
-    what = department,
-    where = glue("{company}, {where}"),
-    why = details)
+  detailed_entries(when = when, 
+                what = role, 
+                with = glue('\\newline {short}'),
+                .protect = FALSE)
 ```
 
 # Non-Academic Jobs
@@ -128,11 +128,12 @@ experience %>%
 experience %>%
   filter(type == 'non-academic') %>%
   detailed_entries(
-    when = glue("{start_date}--{end_date}"),
-    with = role,
-    what = department,
+    when = when,
+    with = if_else(is.na(department), NA_character_, department),
+    what = role,
     where = glue("{company}, {where}"),
     why = details)
+
 ```
 
 # Education
