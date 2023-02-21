@@ -108,7 +108,8 @@ experience %>%
       # with = glue("\"project name\""),
       what = if_else(is.na(short), glue('{role}'), glue("{role}, {short}")),
       why = details,
-      where = glue("\\newline Supervised by {supervisor}, {department}, {company},    {where}"))
+      where = glue("\\newline Supervised by {supervisor}, {department}, {company},    {where}"),
+      .protect = FALSE)
 ```
 
 # Academic Experience
@@ -236,7 +237,7 @@ for (training.type in training.types) {
 
 ```{r extracurricular}
 extracurricular %>%
-  detailed_entries(when = when, what = what, why = why)
+  detailed_entries(when = when, what = what, why = why, .protect = FALSE)
 ```
 
 \pagebreak
