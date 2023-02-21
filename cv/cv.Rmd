@@ -95,8 +95,8 @@ extracurricular <- read_csv(
 # About Me
 
 - I am a Research Data Specialist in the Bergelson lab where we study language acquisition - babies learning language.
-  By delegating a subset of data/coding/software tasks to a dedicated specialist - me, our lab improves both the handling of such tasks and the efficiency of our researchers.
-- My background is in Maths and Cognitive Science, so this job is tailor-made for me.
+  I take care of data, code, and software and provide technical support in all these areas.
+  My background is in Maths and Cognitive Science, so this job is tailor-made for me.
 - Before this job, I worked in research.
   I might do that again some day.
   I am still working on two projects from that part of my life.
@@ -111,11 +111,58 @@ experience %>%
   detailed_entries(
       when = when,
       # with = glue("\"project name\""),
-      what = if_else(is.na(short), glue('{role}'), glue("{role}, {short}")),
-      why = details,
+      what = role,
+      # why = details,
       where = glue("\\newline Supervised by {supervisor}, {department}, {company},    {where}"),
       .protect = FALSE)
 ```
+
+## My Responsibilities
+
+```{r responsibilities}
+responsibilities_header <- 'As a Research Data Specialist (formally "assosiate in research") in Dr. Bergelson\'s lab, my responsibilities include, but aren\'t limited to:'
+
+responsibilities <- c(
+    "conferring with Dr. Bergelson to review work assignments and develop plans for research experiments and make modifications to existing procedures and techniques to meet the needs of the particular studies as required",
+    "performing a variety of programming/technical duties involved in managing database data, providing technical support for code and data repositories within the university and in collaboration with PI colleagues",
+    "conducting data wrangling, cleaning, and/or analysis with relevant new/existing datasets",
+    "review laboratory methods manual, scientific journals, abstracts and other literature for information applicable to research experiments",
+    "determine and set up computers and laboratory equipment required for specific protocol",
+    "maintain GitHub repositories and other web/server needs for the lab",
+    "maintain software and laboratory equipment", 
+    "review work of other laboratory personnel and assist in training new personnel",
+    "and perform other related duties incidental to the work described above")
+
+responsibilities %>%
+  enframe(name = NULL, value = 'responsibility') %>%
+  mutate(header = responsibilities_header) %>%
+  detailed_entries(what = header, why = responsibility)
+```
+
+\medskip
+
+## Value I Add
+
+
+```{r values_added}
+
+values_added_header <- 'By doing all of the above and more, I support the lab\'s research efforts in several important ways:'
+
+values_added <- c(
+    "We can implement more ideas that require considerate technical effort and would otherwise have to be postponed or canceled",
+    "We partially off-load technical work from my colleagues to me which both makes that work done more robustly and frees my colleagues' time to handle the non-technical, core aspects of their research",
+    "I improve the smoothness of lab's operation by taking care of the lab's data, code, and technical documentation, and providing technical support to my colleagues",
+    "Through code review and advice, I improve my colleagues' technical skills",
+    "I save hours of manual labor by automating repetitive tasks")
+
+values_added %>%
+  enframe(name = NULL, value = 'value_added') %>%
+  mutate(header = values_added_header) %>%
+  detailed_entries(what = header, why = value_added)
+
+```
+
+
 
 # Academic Experience
 
