@@ -292,8 +292,6 @@ extracurricular %>%
   detailed_entries(when = when, what = what, why = why, .protect = FALSE)
 ```
 
-\pagebreak
-
 
 # Skills
 
