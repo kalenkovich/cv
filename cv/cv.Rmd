@@ -155,9 +155,9 @@ education.data %>%
 ```{r articles-published}
 articles.published %>%
   detailed_entries(
-    what = author,
+    what = title,
     when = as.character(year),
-    with = title,
+    with = author,
     where = journal,
     .protect = FALSE
   )
@@ -167,8 +167,8 @@ articles.published %>%
 ```{r articles-in-progress}
 articles.in.progress %>%
   detailed_entries(
-    what = author,
-    with = title,
+    what = title,
+    with = author,
     # In Zotero, the comment is under "type". No idea how this became "genre".
     when = genre,
     .protect = FALSE
@@ -181,9 +181,9 @@ articles.in.progress %>%
 posters2 %>%
   arrange(desc(issued)) %>%
   detailed_entries(
-    what = author,
+    what = title,
     when = date_string,
-    with = title,
+    with = author,
     where = glue('{event}, {`event-place`}'),
     .protect = FALSE
   )
@@ -196,7 +196,7 @@ posters2 %>%
 ```{r teaching-uni}
 teaching %>%
   filter(type == "University course")  %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+  detailed_entries(what = what, when = when, with = with, where = where, why = why)
 ```
 
 ## Mini courses
@@ -204,7 +204,7 @@ teaching %>%
 ```{r teaching-summer-schools}
 teaching %>%
   filter(type == "Mini course") %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
+  detailed_entries(what = what, when = when, with = with, where = where, why = why)
 ```
 
 # Training
@@ -218,10 +218,10 @@ for (training.type in training.types) {
   training %>%
     filter(type == training.type) %>%
     arrange(desc(when)) %>%
-    detailed_entries(what = glue("{with}, {where}"), 
+    detailed_entries(what = what, 
                      where = when,
                      why = why, 
-                     with = what,
+                     with = glue("{with}, {where}"),
                      .protect = FALSE) %>%
     knitr::knit_print() %>%
     cat
@@ -236,7 +236,7 @@ for (training.type in training.types) {
 
 ```{r extracurricular}
 extracurricular %>%
-  detailed_entries(with = what, what = when, why = why)
+  detailed_entries(when = when, what = what, why = why)
 ```
 
 \pagebreak
