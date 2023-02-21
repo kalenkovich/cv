@@ -1,96 +1,67 @@
-%!TEX TS-program = xelatex
-%!TEX encoding = UTF-8 Unicode
-% Awesome CV LaTeX Template for CV/Resume
-%
-% This template has been downloaded from:
-% https://github.com/posquit0/Awesome-CV
-%
-% Author:
-% Claud D. Park <posquit0.bj@gmail.com>
-% http://www.posquit0.com
-%
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
 %
 % Adapted to be an Rmarkdown template by Mitchell O'Hara-Wild
-% 23 November 2018
+% 8 February 2019
 %
-% Template license:
-% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-%
-%-------------------------------------------------------------------------------
-% CONFIGURATIONS
-%-------------------------------------------------------------------------------
-% A4 paper size by default, use 'letterpaper' for US letter
-\documentclass[11pt, a4paper]{awesome-cv}
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
 
-% Configure page margins with geometry
-\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
 
-% Specify the location of the included fonts
-\fontdir[fonts/]
+\documentclass[11pt,a4paper,]{moderncv}
 
-% Color for highlights
-% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
-%                 awesome-nephritis, awesome-concrete, awesome-darknight
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 
-\definecolor{awesome}{HTML}{009ACD}
+\definecolor{color0}{rgb}{0,0,0}% black
+\definecolor{color1}{HTML}{009ACD}% custom
+\definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
 
-% Colors for text
-% Uncomment if you would like to specify your own color
-% \definecolor{darktext}{HTML}{414141}
-% \definecolor{text}{HTML}{333333}
-% \definecolor{graytext}{HTML}{5D5D5D}
-% \definecolor{lighttext}{HTML}{999999}
-
-% Set false if you don't want to highlight section with awesome color
-\setbool{acvSectionColorHighlight}{true}
-
-% If you would like to change the social information separator from a pipe (|) to something else
-\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
-
-\def\endfirstpage{\newpage}
-
-%-------------------------------------------------------------------------------
-%	PERSONAL INFORMATION
-%	Comment any of the lines below if they are not required
-%-------------------------------------------------------------------------------
-% Available options: circle|rectangle,edge/noedge,left/right
-
-\name{Evgenii}{Kalenkovich}
-
-\position{Research Data Specialist}
-\address{Bergelson Lab, Duke University}
-
-\mobile{+19842602401}
-\email{\href{mailto:e.kalenkovich@gmail.com}{\nolinkurl{e.kalenkovich@gmail.com}}}
-\github{kalenkovich}
-
-% \gitlab{gitlab-id}
-% \stackoverflow{SO-id}{SO-name}
-% \skype{skype-id}
-% \reddit{reddit-id}
-
-\quote{I am a research data specialist in the Bergelson lab where we
-study language acquisition - babies learning language. My role is to
-provide technical support for research activities, including managing
-data, code, infrastructure, and documentation, and assisting colleagues
-with hands-on support and guidance. I strive to improve the efficiency,
-reproducibility, and robustness of data processes. I have a background
-in mathematics and cognitive science, making me well-suited for my role
-in the lab. Prior to my current position, I led several projects in
-psycho- and neurolinguistics and worked as a data analyst in the banking
-industry. In my free time, I enjoy reading about the intersection of
-cognitive computational modeling, developmental psychology, and
-linguistics, and hope to make contributions to this field in the future.
-I also enjoy indoor bouldering and introducing friends to the sport.}
-
-\usepackage{booktabs}
+\usepackage[scaled=0.86]{DejaVuSansMono}
 
 \providecommand{\tightlist}{%
 	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\def\donothing#1{#1}
+\def\emaillink#1{#1}
 
-%------------------------------------------------------------------------------
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75,footskip=60pt]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
 
+
+% personal data
+\name{Evgenii}{Kalenkovich}
+\title{Research Data Specialist}
+\address{Bergelson Lab, Duke University}{}{}
+\phone[mobile]{+19842602401} % Phone number
+\email{\donothing{\href{mailto:e.kalenkovich@gmail.com}{\nolinkurl{e.kalenkovich@gmail.com}}}}
+ % Personal website
+
+
+\social[github]{kalenkovich}
+% \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+
+
+
+\quote{I am a research data specialist in the Bergelson lab where we
+study language acquisition - babies learning language. I have a
+background in mathematics and cognitive science, making me well-suited
+for my role in the lab. Prior to my current position, I led several
+projects in psycho- and neurolinguistics and worked as a data analyst in
+the banking industry. In my free time, I enjoy reading about the
+intersection of cognitive computational modeling, developmental
+psychology, and linguistics, and hope to make contributions to this
+field in the future. I also enjoy indoor bouldering and introducing
+friends to the sport.}
 
 % Pandoc CSL macros
 \newlength{\cslhangindent}
@@ -114,86 +85,70 @@ I also enjoy indoor bouldering and introducing friends to the sport.}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
 \begin{document}
-
-% Print the header with above personal informations
-% Give optional argument to change alignment(C: center, L: left, R: right)
-\makecvheader
-
-% Print the footer with 3 arguments(<left>, <center>, <right>)
-% Leave any of these blank if they are not needed
-% 2019-02-14 Chris Umphlett - add flexibility to the document name in footer, rather than have it be static Curriculum Vitae
-\makecvfooter
-  {February 2023}
-    {Evgenii Kalenkovich~~~·~~~Curriculum Vitae}
-  {\thepage}
-
-
-%-------------------------------------------------------------------------------
-%	CV/RESUME CONTENT
-%	Each section is imported separately, open each file in turn to modify content
-%------------------------------------------------------------------------------
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
 
 
 
 \hypertarget{current-position}{%
 \section{Current Position}\label{current-position}}
 
-\begin{cventries}
-    \cventry{Bergelson Lab}{Research Data Specialist (a.k.a. lab technician, associate in research, etc.)}{Duke University, Durham, NC}{November 2021--Present}{\begin{cvitems}
-\item As a Research Data Specialist, I am responsible for managing research data in various forms, including manual and automatic annotations, survey results, eye-tracking data, audio, and video. My role involves ensuring that all data  complete, up-to-date, and stored securely, while transforming it in ways that are suitable for analyzing it or making it public.
-\item To achieve this, I maintain code in the lab's R and Python packages and write one-off scripts to automate various data manipulation tasks, ensuring that they are done in a consistent manner - across repeated runs and data subsets (e.g., participants, sessions). I am the primary point of contact for computer-related matters in the lab, I provide technical support to colleagues, helping them with code, analysis, and software troubleshooting.
-\item I believe that my work plays an important role in supporting the success of the lab's research efforts. It is rewarding to work in an environment where my skills and expertise are valued and appreciated.
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{November 2021--Present}{Bergelson Lab}{Research Data Specialist (a.k.a. lab technician, associate in research, etc.)}{Duke University, Durham, NC}{}{\begin{itemize}%
+\item As a Research Data Specialist, I am responsible for managing research data in various forms, including manual and automatic annotations, survey results, eye-tracking data, audio, and video. My role involves ensuring that all data  complete, up-to-date, and stored securely, while transforming it in ways that are suitable for analyzing it or making it public.%
+\item To achieve this, I maintain code in the lab's R and Python packages and write one-off scripts to automate various data manipulation tasks, ensuring that they are done in a consistent manner - across repeated runs and data subsets (e.g., participants, sessions). I am the primary point of contact for computer-related matters in the lab, I provide technical support to colleagues, helping them with code, analysis, and software troubleshooting.%
+\item I believe that my work plays an important role in supporting the success of the lab's research efforts. It is rewarding to work in an environment where my skills and expertise are valued and appreciated.%
+\end{itemize}}
 
 \hypertarget{research-experience}{%
 \section{Research Experience}\label{research-experience}}
 
-\begin{cventries}
-    \cventry{Center for Decision Making}{Research Project Lead}{HSE University, Moscow}{March 2018--Present}{\begin{cvitems}
-\item I ran two follow-up experiments on the timecourse of negative sentence processing. Behavioral, mouse-tracking, online experiments. The second one had to be done online due to the COVID-19 pandemic. Transferring a mouse-tracking experiment online in a way that would closely mimic the laboratory conditions was a big challenge. Which I solved extremely well, if I may so: the experiment had several properties that no commercial online experiment service provided at that time.
-\end{cvitems}}
-    \cventry{Center for Decision Making}{Research Project Lead}{HSE University, Moscow}{July 2018--June 2021}{\begin{cvitems}
-\item I led a study validating an alleged psychophysiological marker of hierarchical syntax processing of speech. The study was run as a registered report which was challenging but ultimately the right choice. In this project, I played all the CRediT taxonomy roles except Funding Acquisition. Our code and data are publicly available, the MEG data is in BIDS format on openneuro. The article we published about the project was my first (and currently only) first-author article.
-\end{cvitems}}
-    \cventry{Master's Program ``Cognitive Sciences and Technologies''}{Discussion/Practice Session Tutor}{HSE University, Moscow}{September 2018--March 2019}{\begin{cvitems}
-\item Digital Signal Processing (20+ students irst-year cognitive science Master's students, ~10 sessions).
-\end{cvitems}}
-    \cventry{Center for Bioelectric Interfaces}{Research Programmer}{HSE University, Moscow}{July 2017--February 2018}{\begin{cvitems}
-\item I wrote software for real-time EEG source reconstruction and 3D visualization using Python, Qt, mne-python. The project involved implementation of source reconstruction algorithms and brain structures visualization in an efficient parallelized way suitable for real-time use. The development was continuted by my colleagues, the result was patented and is currently used as part of a software suite of an EEG and BIC equipment manufacturer.
-\end{cvitems}}
-    \cventry{Master's Program ``Cognitive Sciences and Technologies''}{Master's Student}{HSE University, Moscow}{September 2015--June 2017}{\begin{cvitems}
-\item My thesis project was on EEG source reconstruction modeling surface propagation of epileptic spikes.
-\end{cvitems}}
-    \cventry{Master's Program ``Cognitive Sciences and Technologies''}{Discussion/Practice Session Tutor}{HSE University, Moscow}{January 2017--March 2017}{\begin{cvitems}
-\item Experimental Design and Statistics (two groups of ~15 students first-year cognitive science Master's students, ~25 sessions each group). I additionally incorporated an independent course on data analysis and visualization in R into the sessions.
-\end{cvitems}}
-    \cventry{Psychophysiology Lab}{Research Programmer}{HSE University, Moscow}{April 2015--February 2016}{\begin{cvitems}
-\item I worked on a set of studies of perceptual decision making and sustained attention using EEG. I helped with writing code (Matlab, EEGLAB) for the time-frequency analysis, multivariate statistics, and data visualization. For one of the studies I also participated in writing up the results leading to my very first scientific paper authorship.
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{March 2018--Present}{Center for Decision Making}{Research Project Lead}{HSE University, Moscow}{}{\begin{itemize}%
+\item I ran two follow-up experiments on the timecourse of negative sentence processing. Behavioral, mouse-tracking, online experiments. The second one had to be done online due to the COVID-19 pandemic. Transferring a mouse-tracking experiment online in a way that would closely mimic the laboratory conditions was a big challenge. Which I solved extremely well, if I may so: the experiment had several properties that no commercial online experiment service provided at that time.%
+\end{itemize}}
+    \cventry{July 2018--June 2021}{Center for Decision Making}{Research Project Lead}{HSE University, Moscow}{}{\begin{itemize}%
+\item I led a study validating an alleged psychophysiological marker of hierarchical syntax processing of speech. The study was run as a registered report which was challenging but ultimately the right choice. In this project, I played all the CRediT taxonomy roles except Funding Acquisition. Our code and data are publicly available, the MEG data is in BIDS format on openneuro. The article we published about the project was my first (and currently only) first-author article.%
+\end{itemize}}
+    \cventry{September 2018--March 2019}{Master's Program ``Cognitive Sciences and Technologies''}{Discussion/Practice Session Tutor}{HSE University, Moscow}{}{\begin{itemize}%
+\item Digital Signal Processing (20+ students irst-year cognitive science Master's students, ~10 sessions).%
+\end{itemize}}
+    \cventry{July 2017--February 2018}{Center for Bioelectric Interfaces}{Research Programmer}{HSE University, Moscow}{}{\begin{itemize}%
+\item I wrote software for real-time EEG source reconstruction and 3D visualization using Python, Qt, mne-python. The project involved implementation of source reconstruction algorithms and brain structures visualization in an efficient parallelized way suitable for real-time use. The development was continuted by my colleagues, the result was patented and is currently used as part of a software suite of an EEG and BIC equipment manufacturer.%
+\end{itemize}}
+    \cventry{September 2015--June 2017}{Master's Program ``Cognitive Sciences and Technologies''}{Master's Student}{HSE University, Moscow}{}{\begin{itemize}%
+\item My thesis project was on EEG source reconstruction modeling surface propagation of epileptic spikes.%
+\end{itemize}}
+    \cventry{January 2017--March 2017}{Master's Program ``Cognitive Sciences and Technologies''}{Discussion/Practice Session Tutor}{HSE University, Moscow}{}{\begin{itemize}%
+\item Experimental Design and Statistics (two groups of ~15 students first-year cognitive science Master's students, ~25 sessions each group). I additionally incorporated an independent course on data analysis and visualization in R into the sessions.%
+\end{itemize}}
+    \cventry{April 2015--February 2016}{Psychophysiology Lab}{Research Programmer}{HSE University, Moscow}{}{\begin{itemize}%
+\item I worked on a set of studies of perceptual decision making and sustained attention using EEG. I helped with writing code (Matlab, EEGLAB) for the time-frequency analysis, multivariate statistics, and data visualization. For one of the studies I also participated in writing up the results leading to my very first scientific paper authorship.%
+\end{itemize}}
 
 \hypertarget{non-academic-jobs}{%
 \section{Non-Academic Jobs}\label{non-academic-jobs}}
 
-\begin{cventries}
-    \cventry{-}{Maths Tutor}{Self-employed, Moscow}{September 2014--May 2015}{\begin{cvitems}
-\item I worked with a range of students: from middle school students to graduate school applicants. I successfully helped both those struggling with maths and those interested in more advanced topics achieve their goals.
-\end{cvitems}}
-    \cventry{Credit Risk, Collections}{Credit Risk Analyst}{Retail Banks, Moscow}{July 2011--July 2014}{\begin{cvitems}
-\item I did analysis, visualization, and predicitve modeling of the risk of default for both potential new and existing customers - credit scoring and credit portfolio analyisis. SQL, SAS, Excel. Logistic regression and decision trees.
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{September 2014--May 2015}{-}{Maths Tutor}{Self-employed, Moscow}{}{\begin{itemize}%
+\item I worked with a range of students: from middle school students to graduate school applicants. I successfully helped both those struggling with maths and those interested in more advanced topics achieve their goals.%
+\end{itemize}}
+    \cventry{July 2011--July 2014}{Credit Risk, Collections}{Credit Risk Analyst}{Retail Banks, Moscow}{}{\begin{itemize}%
+\item I did analysis, visualization, and predicitve modeling of the risk of default for both potential new and existing customers - credit scoring and credit portfolio analyisis. SQL, SAS, Excel. Logistic regression and decision trees.%
+\end{itemize}}
 
 \hypertarget{education}{%
 \section{Education}\label{education}}
 
-\begin{cventries}
-    \cventry{MSc in Cognitive Science}{HSE University, School of Psychology}{Moscow}{2015 - 2017}{}\vspace{-4.0mm}
-    \cventry{MSc in Financial and Actuarial Mathematics}{Charles University, Faculty of Mathematics and Physics}{Prague}{2008 - 2010}{}\vspace{-4.0mm}
-    \cventry{BSc in Financial Mathematics}{Charles University, Faculty of Mathematics and Physics}{Prague}{2005 - 2008}{}\vspace{-4.0mm}
-\end{cventries}
+\nopagebreak
+    \cventry{2015 - 2017}{MSc in Cognitive Science}{HSE University, School of Psychology}{Moscow}{}{\empty}
+    \cventry{2008 - 2010}{MSc in Financial and Actuarial Mathematics}{Charles University, Faculty of Mathematics and Physics}{Prague}{}{\empty}
+    \cventry{2005 - 2008}{BSc in Financial Mathematics}{Charles University, Faculty of Mathematics and Physics}{Prague}{}{\empty}
 
 \hypertarget{publications}{%
 \section{Publications}\label{publications}}
@@ -201,29 +156,26 @@ I also enjoy indoor bouldering and introducing friends to the sport.}
 \hypertarget{published}{%
 \subsection{Published}\label{published}}
 
-\begin{cventries}
-    \cventry{\textbf{Evgenii Kalenkovich}, Anna Shestakova, Nina Kazanina}{Frequency Tagging of Syntactic Structure or Lexical Properties; A Registered MEG Study}{Cortex}{2021}{}\vspace{-4.0mm}
-    \cventry{Yuri G. Pavlov, ..., Faisal Mushtaq}{\#EEGManyLabs: Investigating the Replicability of Influential EEG Experiments}{Cortex}{2021}{}\vspace{-4.0mm}
-    \cventry{Nikita A. Novikov, Yulia M. Nurislamova, Natalia A. Zhozhikashvili,\textbf{ Evgenii E. Kalenkovich}, Anna A. Lapina, Boris V. Chernyshev}{Slow and Fast Responses: Two Mechanisms of Trial Outcome Processing Revealed by EEG Oscillations}{Frontiers in Human Neuroscience}{2017}{}\vspace{-4.0mm}
-\end{cventries}
+\nopagebreak
+    \cventry{2021}{\textbf{Evgenii Kalenkovich}, Anna Shestakova, Nina Kazanina}{Frequency Tagging of Syntactic Structure or Lexical Properties; A Registered MEG Study}{Cortex}{}{\empty}
+    \cventry{2021}{Yuri G. Pavlov, ..., Faisal Mushtaq}{\#EEGManyLabs: Investigating the Replicability of Influential EEG Experiments}{Cortex}{}{\empty}
+    \cventry{2017}{Nikita A. Novikov, Yulia M. Nurislamova, Natalia A. Zhozhikashvili,\textbf{ Evgenii E. Kalenkovich}, Anna A. Lapina, Boris V. Chernyshev}{Slow and Fast Responses: Two Mechanisms of Trial Outcome Processing Revealed by EEG Oscillations}{Frontiers in Human Neuroscience}{}{\empty}
 
 \hypertarget{in-progress}{%
 \subsection{In progress}\label{in-progress}}
 
-\begin{cventries}
-    \cventry{\textbf{Evgenii Kalenkovich}, Egor Levchenko}{A Reproducible MEEG Data Analysis Workflow with conda, Snakemake, and R Markdown}{}{preprint}{}\vspace{-4.0mm}
-    \cventry{\textbf{Evgenii Kalenkovich}, Ekaterina Stupina}{Phonemes in Speech Perception: Selective Adaptation to Missing Phonemes}{}{}{}\vspace{-4.0mm}
-\end{cventries}
+\nopagebreak
+    \cventry{preprint}{\textbf{Evgenii Kalenkovich}, Egor Levchenko}{A Reproducible MEEG Data Analysis Workflow with conda, Snakemake, and R Markdown}{}{}{\empty}
+    \cventry{}{\textbf{Evgenii Kalenkovich}, Ekaterina Stupina}{Phonemes in Speech Perception: Selective Adaptation to Missing Phonemes}{}{}{\empty}
 
 \hypertarget{posters}{%
 \section{Posters}\label{posters}}
 
-\begin{cventries}
-    \cventry{\textbf{Evgenii Kalenkovich}, Nina Kazanina}{Syntactic vs. Lexical Effects in Syntactic Frequency Tagging}{SNL 2020, Online}{October 2020}{}\vspace{-4.0mm}
-    \cventry{\textbf{Evgenii Kalenkovich}, Emily J. Darley, Christopher Kent, Nina Kazanina}{Psychological mechanisms contributing to the effort in negation processing}{AMLaP 2020, Online}{September 2020}{}\vspace{-4.0mm}
-    \cventry{\textbf{Evgenii Kalenkovich}, Emily J. Darley, Christopher Kent, Nina Kazanina}{Competition between local priming and global outcome in processing of negatives}{AMLaP 2019, Moscow}{September 2019}{}\vspace{-4.0mm}
-    \cventry{\textbf{Evgenii Kalenkovich}, Ekaterina Stupina}{Do we need phonemes in speech perception? An auditory selective adaptation study}{AMLaP 2019, Moscow}{September 2019}{}\vspace{-4.0mm}
-\end{cventries}
+\nopagebreak
+    \cventry{October 2020}{\textbf{Evgenii Kalenkovich}, Nina Kazanina}{Syntactic vs. Lexical Effects in Syntactic Frequency Tagging}{SNL 2020, Online}{}{\empty}
+    \cventry{September 2020}{\textbf{Evgenii Kalenkovich}, Emily J. Darley, Christopher Kent, Nina Kazanina}{Psychological mechanisms contributing to the effort in negation processing}{AMLaP 2020, Online}{}{\empty}
+    \cventry{September 2019}{\textbf{Evgenii Kalenkovich}, Emily J. Darley, Christopher Kent, Nina Kazanina}{Competition between local priming and global outcome in processing of negatives}{AMLaP 2019, Moscow}{}{\empty}
+    \cventry{September 2019}{\textbf{Evgenii Kalenkovich}, Ekaterina Stupina}{Do we need phonemes in speech perception? An auditory selective adaptation study}{AMLaP 2019, Moscow}{}{\empty}
 
 \hypertarget{teaching}{%
 \section{Teaching}\label{teaching}}
@@ -231,32 +183,30 @@ I also enjoy indoor bouldering and introducing friends to the sport.}
 \hypertarget{university-courses}{%
 \subsection{University courses}\label{university-courses}}
 
-\begin{cventries}
-    \cventry{Psychology Department}{Python for Data Extraction and Data Mining}{HSE University, Moscow}{April-June, 2020}{\begin{cvitems}
-\item Introduction to Python for first-year bachelor students. The course blended a MOOC with 5 remote discussion/practice sessions. I led the sessions for four groups of students out of seven.
-\end{cvitems}}
-    \cventry{University-wide course}{Introduction to Programming}{HSE University, Moscow}{September-December, 2019 and 2020}{\begin{cvitems}
-\item Introduction to Python for third/fourth-year bachelor students from various departments. The course blended a MOOC with ~7 lectures and ~14 discussion practice sessions. I led the session for two groups of students.
-\end{cvitems}}
-    \cventry{Master's program 'Cognitive science and technologies'}{Qualitative and Quantitative Research Methods in Psychology}{HSE University, Moscow}{September, 2018 - March, 2019}{\begin{cvitems}
-\item From the syllabus: 'The course reviews the principal steps taken during a psychological research study and aims to provide students with the knowledge and competencies necessary to plan and conduct research projects of their own leading to M.Sc. dissertation and future scientific publications.' I led the discussion/practice sessions for the first-year cognitive science Master's students. The sessions combined the material from the lectures with a pretty much independent course on statistics using R.
-\end{cvitems}}
-    \cventry{Master's program 'Cognitive science and technologies'}{Digital Signal Processing}{HSE University, Moscow}{January-March, 2017}{\begin{cvitems}
-\item Basics of digital signal processing: Fourier, linear filters, random processes. I led approximately seven discussion/practice sessions.
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{April-June, 2020}{Psychology Department}{Python for Data Extraction and Data Mining}{HSE University, Moscow}{}{\begin{itemize}%
+\item Introduction to Python for first-year bachelor students. The course blended a MOOC with 5 remote discussion/practice sessions. I led the sessions for four groups of students out of seven.%
+\end{itemize}}
+    \cventry{September-December, 2019 and 2020}{University-wide course}{Introduction to Programming}{HSE University, Moscow}{}{\begin{itemize}%
+\item Introduction to Python for third/fourth-year bachelor students from various departments. The course blended a MOOC with ~7 lectures and ~14 discussion practice sessions. I led the session for two groups of students.%
+\end{itemize}}
+    \cventry{September, 2018 - March, 2019}{Master's program 'Cognitive science and technologies'}{Qualitative and Quantitative Research Methods in Psychology}{HSE University, Moscow}{}{\begin{itemize}%
+\item From the syllabus: 'The course reviews the principal steps taken during a psychological research study and aims to provide students with the knowledge and competencies necessary to plan and conduct research projects of their own leading to M.Sc. dissertation and future scientific publications.' I led the discussion/practice sessions for the first-year cognitive science Master's students. The sessions combined the material from the lectures with a pretty much independent course on statistics using R.%
+\end{itemize}}
+    \cventry{January-March, 2017}{Master's program 'Cognitive science and technologies'}{Digital Signal Processing}{HSE University, Moscow}{}{\begin{itemize}%
+\item Basics of digital signal processing: Fourier, linear filters, random processes. I led approximately seven discussion/practice sessions.%
+\end{itemize}}
 
 \hypertarget{mini-courses}{%
 \subsection{Mini courses}\label{mini-courses}}
 
-\begin{cventries}
-    \cventry{Applied Cogntive Science Summer School}{Reproducible Resarch}{HSE University, Moscow}{November, 3-5, 2020}{\begin{cvitems}
-\item Three 2-hour-long workshops on reproducible code using git, reproducible software environment using conda, reproducible articles using renv, r-markdown, and papaja.
-\end{cvitems}}
-    \cventry{Applied Cogntive Science Summer School}{Component Analysis and Dimensionality Reduction for M/EEG data}{HSE University, Moscow}{June, 15-18, 2019}{\begin{cvitems}
-\item Three 2-hour-long workshops taught together with Egor Levchenko. Intuitive visual explanation of covariance matrices, whitening and decorrelation methods in general. A short detour into ICA. Examples of applications from authors' research: inter-subject correlation of MEG data acquired during naturalistic stimuli viewing and frequency-tagging analysis of MEG data acquired during listening to speech.
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{November, 3-5, 2020}{Applied Cogntive Science Summer School}{Reproducible Resarch}{HSE University, Moscow}{}{\begin{itemize}%
+\item Three 2-hour-long workshops on reproducible code using git, reproducible software environment using conda, reproducible articles using renv, r-markdown, and papaja.%
+\end{itemize}}
+    \cventry{June, 15-18, 2019}{Applied Cogntive Science Summer School}{Component Analysis and Dimensionality Reduction for M/EEG data}{HSE University, Moscow}{}{\begin{itemize}%
+\item Three 2-hour-long workshops taught together with Egor Levchenko. Intuitive visual explanation of covariance matrices, whitening and decorrelation methods in general. A short detour into ICA. Examples of applications from authors' research: inter-subject correlation of MEG data acquired during naturalistic stimuli viewing and frequency-tagging analysis of MEG data acquired during listening to speech.%
+\end{itemize}}
 
 \hypertarget{training}{%
 \section{Training}\label{training}}
@@ -264,68 +214,71 @@ I also enjoy indoor bouldering and introducing friends to the sport.}
 \hypertarget{summer-schools}{%
 \subsection{Summer schools}\label{summer-schools}}
 
-\begin{cventries}
-    \cventry{University of Groningen, Groningen}{\href{https://www.rug.nl/research/fse/cognitive-systems-and-materials/news/seminars/agenda/2019/20190408_springschoolcognitivemodeling?lang=en}{Groningen Spring School on Cognitive Modeling}}{2019}{}{\begin{cvitems}
-\item Error-driven learning: simulating the time course of learning (5 days, active participation)
-\item Nengo: converting high-level cognitive theories into low-level spiking neuron implementations (5 days, auditing)
-\end{cvitems}}
-    \cventry{Psychology Institute of Russain Academy of Sciences, Moscow}{Network modeling and analysis in human cognition research school}{2018}{}{\begin{cvitems}
-\item Basics of graph theory: measures, statistics, application (4 days, last day - group project appying network analysis to the Remote Assocation Task (RAT) data)
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{}{University of Groningen, Groningen}{\href{https://www.rug.nl/research/fse/cognitive-systems-and-materials/news/seminars/agenda/2019/20190408_springschoolcognitivemodeling?lang=en}{Groningen Spring School on Cognitive Modeling}}{2019}{}{\begin{itemize}%
+\item Error-driven learning: simulating the time course of learning (5 days, active participation)%
+\item Nengo: converting high-level cognitive theories into low-level spiking neuron implementations (5 days, auditing)%
+\end{itemize}}
+    \cventry{}{Psychology Institute of Russain Academy of Sciences, Moscow}{Network modeling and analysis in human cognition research school}{2018}{}{\begin{itemize}%
+\item Basics of graph theory: measures, statistics, application (4 days, last day - group project appying network analysis to the Remote Assocation Task (RAT) data)%
+\end{itemize}}
 
 \hypertarget{moocs}{%
 \subsection{MOOCs}\label{moocs}}
 
-\begin{cventries}
-    \cventry{Coursera, online}{\href{https://www.coursera.org/learn/datasciencemathskills}{Data Science Math Skills}}{2020}{}{\begin{cvitems}
-\item This course covered high-school maths. Honestly, this was an attempt at productive procrastination during the COVID-19 lockdown. \href{https://coursera.org/share/d06128df3dbf0ed99de987da0d257f09}{Certificate.}
-\end{cvitems}}
-    \cventry{Coursera, online}{\href{https://www.coursera.org/learn/designexperiments}{Designing, Running, and Analyzing Experiments}}{2018}{}{\begin{cvitems}
-\item \href{https://coursera.org/share/13d8627b09f871715aec86dcd7dd0fbe}{Certificate.}
-\end{cvitems}}
-    \cventry{Coursera, online}{\href{https://www.coursera.org/learn/discrete-calculus}{Single Variable Calculus (5 courses)}}{2018}{}{\begin{cvitems}
-\item In addition to being a refresher of Calculus 101, this course taught me discrete approximation for differential equation solutions. Completed, no certificate.
-\end{cvitems}}
-    \cventry{Coursera, online}{\href{https://www.coursera.org/specializations/data-science-python}{Applied Data Science with Python specialization}}{2017}{}{\begin{cvitems}
-\item Five courses covering basics of data manipulation, text mining, machine learning, social network analysis, plotting and data representation. \href{https://coursera.org/share/cb4c8abff922cf688a98cc30d55cff1a}{Certificate.}
-\end{cvitems}}
-    \cventry{Udacity, online}{\href{https://classroom.udacity.com/courses/cs101}{Intro to Computer Science}}{2014}{}{\begin{cvitems}
-\item An introductory Python course. \href{https://confirm.udacity.com/QXWAQCFL}{Certificate.}
-\end{cvitems}}
-    \cventry{Coursera, online}{Computing for Data Analysis}{2013}{}{\begin{cvitems}
-\item 'In this course students learn programming in R, reading data into R, creating data graphics, accessing and installing R packages, writing R functions, debugging, and organizing and commenting R code.' \href{https://www.coursera.org/api/legacyCertificates.v1/spark/statementOfAccomplishment/970940~3547767/pdf}{Certificate.}
-\end{cvitems}}
-    \cventry{Udacity, online}{\href{https://classroom.udacity.com/courses/cs253}{Web Development}}{2013}{}{\begin{cvitems}
-\item Basics, forms, templates, databases, user accounts, security, APIs, caching, scaling. \href{https://confirm.udacity.com/7H2KDEWK}{Certificate.}
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{}{Coursera, online}{\href{https://www.coursera.org/learn/datasciencemathskills}{Data Science Math Skills}}{2020}{}{\begin{itemize}%
+\item This course covered high-school maths. Honestly, this was an attempt at productive procrastination during the COVID-19 lockdown. \href{https://coursera.org/share/d06128df3dbf0ed99de987da0d257f09}{Certificate.}%
+\end{itemize}}
+    \cventry{}{Coursera, online}{\href{https://www.coursera.org/learn/designexperiments}{Designing, Running, and Analyzing Experiments}}{2018}{}{\begin{itemize}%
+\item \href{https://coursera.org/share/13d8627b09f871715aec86dcd7dd0fbe}{Certificate.}%
+\end{itemize}}
+    \cventry{}{Coursera, online}{\href{https://www.coursera.org/learn/discrete-calculus}{Single Variable Calculus (5 courses)}}{2018}{}{\begin{itemize}%
+\item In addition to being a refresher of Calculus 101, this course taught me discrete approximation for differential equation solutions. Completed, no certificate.%
+\end{itemize}}
+    \cventry{}{Coursera, online}{\href{https://www.coursera.org/specializations/data-science-python}{Applied Data Science with Python specialization}}{2017}{}{\begin{itemize}%
+\item Five courses covering basics of data manipulation, text mining, machine learning, social network analysis, plotting and data representation. \href{https://coursera.org/share/cb4c8abff922cf688a98cc30d55cff1a}{Certificate.}%
+\end{itemize}}
+    \cventry{}{Udacity, online}{\href{https://classroom.udacity.com/courses/cs101}{Intro to Computer Science}}{2014}{}{\begin{itemize}%
+\item An introductory Python course. \href{https://confirm.udacity.com/QXWAQCFL}{Certificate.}%
+\end{itemize}}
+    \cventry{}{Coursera, online}{Computing for Data Analysis}{2013}{}{\begin{itemize}%
+\item 'In this course students learn programming in R, reading data into R, creating data graphics, accessing and installing R packages, writing R functions, debugging, and organizing and commenting R code.' \href{https://www.coursera.org/api/legacyCertificates.v1/spark/statementOfAccomplishment/970940~3547767/pdf}{Certificate.}%
+\end{itemize}}
+    \cventry{}{Udacity, online}{\href{https://classroom.udacity.com/courses/cs253}{Web Development}}{2013}{}{\begin{itemize}%
+\item Basics, forms, templates, databases, user accounts, security, APIs, caching, scaling. \href{https://confirm.udacity.com/7H2KDEWK}{Certificate.}%
+\end{itemize}}
 
 \hypertarget{extracurricular-activity}{%
 \section{Extracurricular activity}\label{extracurricular-activity}}
 
-\begin{cventries}
-    \cventry{2020-2021}{ReproducibiliTea Journal Club organizer}{}{}{\begin{cvitems}
-\item Along with two other organizers, we ran the Moscow chapter of the ReproducibiliTea Journal Club initiative. In addition to discussing reproducibility- and replicability-related papers, we found speakers to give presentations or workshops on the topics voted for by the community.
-\end{cvitems}}
-    \cventry{2020}{Frequency-tagging analysis tutorial for mne-python}{}{}{\begin{cvitems}
-\item As a starting point for the freqtag package described above, Dominik Welke and I wrote a tutorial showing how a very basic frequency-tagging dataset can be analyzed. \textbackslash href\{https://mne.tools/stable/auto\_tutorials/time-freq/50\_ssvep.html\}\{Link.\}
-\end{cvitems}}
-    \cventry{2021}{Tutorial on writing computationally reproducible workflows for M/EEG data analysis}{}{}{\begin{cvitems}
-\item Out of the frustration brought by trying to reproduce (get the same results from the same data) both our own and some public M/EEG results, Egor Levchenko and I decided to write a tutorial on a way an M/EEG data analysis can be done reproducibly. It involves using package management systems (conda, renv), workflow management systems (Snakemake, nipype) and literate programming (r-markdown, codebraid)
-\end{cvitems}}
-\end{cventries}
+\nopagebreak
+    \cventry{}{2020-2021}{ReproducibiliTea Journal Club organizer}{}{}{\begin{itemize}%
+\item Along with two other organizers, we ran the Moscow chapter of the ReproducibiliTea Journal Club initiative. In addition to discussing reproducibility- and replicability-related papers, we found speakers to give presentations or workshops on the topics voted for by the community.%
+\end{itemize}}
+    \cventry{}{2020}{Frequency-tagging analysis tutorial for mne-python}{}{}{\begin{itemize}%
+\item As a starting point for the freqtag package described above, Dominik Welke and I wrote a tutorial showing how a very basic frequency-tagging dataset can be analyzed. \textbackslash href\{https://mne.tools/stable/auto\_tutorials/time-freq/50\_ssvep.html\}\{Link.\}%
+\end{itemize}}
+    \cventry{}{2021}{Tutorial on writing computationally reproducible workflows for M/EEG data analysis}{}{}{\begin{itemize}%
+\item Out of the frustration brought by trying to reproduce (get the same results from the same data) both our own and some public M/EEG results, Egor Levchenko and I decided to write a tutorial on a way an M/EEG data analysis can be done reproducibly. It involves using package management systems (conda, renv), workflow management systems (Snakemake, nipype) and literate programming (r-markdown, codebraid)%
+\end{itemize}}
 
 \pagebreak
 
 \hypertarget{skills}{%
 \section{Skills}\label{skills}}
 
-\begin{cventries}
-    \cventry{data analysis, statistical analysis (NHST/Bayesian), computationally reproducible research, MEEG data analysis (sensor/time-frequency/sources), sample size assessment (NHST/Bayesian), not scared of Mathematics}{Analytical}{}{}{}\vspace{-4.0mm}
-    \cventry{Python, R, Matlab, custom online experiment building (Django/HTML/css/JavaScript)", SQL, Bash}{Programming}{}{}{}\vspace{-4.0mm}
-    \cventry{tidyverse, lme4, simr/faux/BFDA (simulation-based sample size assessment), papaja, mne-python, psychopy, scipy/numpy/pandas/matplotlib, PyQT}{Packages}{}{}{}\vspace{-4.0mm}
-    \cventry{conda, renv, Snakemake, Git, Django}{Tools}{}{}{}\vspace{-4.0mm}
-\end{cventries}
+\nopagebreak
+    \cventry{}{data analysis, statistical analysis (NHST/Bayesian), computationally reproducible research, MEEG data analysis (sensor/time-frequency/sources), sample size assessment (NHST/Bayesian), not scared of Mathematics}{Analytical}{}{}{\empty}
+    \cventry{}{Python, R, Matlab, custom online experiment building (Django/HTML/css/JavaScript)", SQL, Bash}{Programming}{}{}{\empty}
+    \cventry{}{tidyverse, lme4, simr/faux/BFDA (simulation-based sample size assessment), papaja, mne-python, psychopy, scipy/numpy/pandas/matplotlib, PyQT}{Packages}{}{}{\empty}
+    \cventry{}{conda, renv, Snakemake, Git, Django}{Tools}{}{}{\empty}
+
 
 \end{document}
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
