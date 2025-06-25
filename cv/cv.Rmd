@@ -1,24 +1,16 @@
 ---
 name: Evgenii
 surname: Kalenkovich
-position: "Junior Research Fellow"
-address: "Institute for Cognitive Neuroscience, HSE University, Moscow, Russia"
-phone: +7 958 823 01 99
-www: "kalenkovich.netlify.app"
+position: "Research Data Specialist"
+address: "Bergelson Lab, Duke University"
+phone: "+19842602401"
 email: "e.kalenkovich@gmail.com"
-twitter: kalenkovich
 github: kalenkovich
-date: "`r format(Sys.time(), '%B %Y')`"
 output:
-  vitae::awesomecv:
+  vitae::moderncv:
+    theme: classic
     keep_tex: yes
 headcolor: 009ACD
-aboutme: >
-  I am an informal pre-doc on the lookout for a PhD project, preferably at the intersection of Cognitive Modeling, Psycholinguistics, and Developmental Psychology.
-  Meanwhile, I am working on three psycho-/neurolinguistic projects: a study of syntax processing using MEG, a study of negation processing using mouse tracking, and a study of phoneme perception using selective adaptation.
-  In my spare time, I am involved in several other mini-projects: development of a Python package to analyze frequency-tagging data, unsupervised classification of MEG data for a BIOMAG 2022 competition, writing a tutorial on the use of workflow management systems in M/EEG data analysis, reproducing early PDP models (such as interactive activation model).
-  I do my current best to work with computational reproducibility and open science practices in mind.
-  Here and there I make small contributions to scientific open-source projects.
 ---
 
 ```{r setup, include=FALSE}
@@ -43,9 +35,15 @@ education.data <- read_csv(
   here::here('data', 'education.csv'),
   col_types = cols(.default = "c"))
 
-jobs.briefly <- read_csv(
-  here::here('data', 'jobs_briefly.csv'),
-  col_types = cols(.default = "c"))
+experience <- read_csv(
+  here::here('data', 'experience.csv'),
+  col_types = cols(.default = "c")) %>%
+  mutate(
+    sort_date = replace(end_date, end_date == 'Present','November 2300'),
+    sort_date = lubridate::parse_date_time(sort_date, 'b y'),
+    when = glue("{start_date} -- {end_date}")) %>%
+    # sort_date = lubridate::parse_date_time(start_date, 'b y')) %>%
+  arrange(by = desc(sort_date))
 
 jobs.academic <- read_csv(
   here::here('data', 'jobs_academic.csv'),
@@ -80,7 +78,7 @@ be <- bibliography_entries(here::here('data', 'from-zotero.bib')) %>%
   rename(journal = `container-title`) %T>%
   {filter(., genre == 'Poster') ->> posters2} %T>%
   {filter(., type == 'article-journal') ->> articles.published} %T>%
-  {filter(., type == 'manuscript') ->> articles.in.progress}
+  {filter(., type %in% c('manuscript', 'report')) ->> articles.in.progress}
 
 training <- read_csv(
   here::here('data', 'training.csv'),
@@ -94,23 +92,101 @@ extracurricular <- read_csv(
   col_types = cols(.default = "c"))
 ```
 
-# Experience briefly (see "Jobs" for details)
+# About Me
 
-```{r jobs-brief}
-jobs.briefly %>% 
+- I am a Research Data Specialist in the Bergelson lab where we study language acquisition - babies learning language.
+  I take care of data, code, and software and provide technical support in all these areas.
+  My background is in Maths and Cognitive Science, so this job is tailor-made for me.
+- Before this job, I worked in research.
+  I might do that again some day.
+  I am still working on two projects from that part of my life.
+- In my free time, I enjoy reading about the intersection of cognitive computational modeling, developmental psychology, and linguistics, and hope to make contributions to this area in the future.
+- I also enjoy indoor bouldering and introducing friends to the sport.
+
+# Current Position
+
+```{r jobs-current}
+experience %>%
+  filter(status == 'current') %>%
   detailed_entries(
-    what = role,
-    when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
-    why = details)
+      when = when,
+      # with = glue("\"project name\""),
+      what = role,
+      # why = details,
+      where = glue("\\newline Supervised by {supervisor}, {department}, {company},    {where}"),
+      .protect = FALSE)
 ```
 
-# Skills
+## My Responsibilities
 
-```{r}
-skills %>% 
-  detailed_entries(what = skill, with = category)
+```{r responsibilities}
+responsibilities_header <- 'As a Research Data Specialist (formally "assosiate in research") in Dr. Bergelson\'s lab, my responsibilities include, but aren\'t limited to:'
+
+responsibilities <- c(
+    "conferring with Dr. Bergelson to review work assignments and develop plans for research experiments and make modifications to existing procedures and techniques to meet the needs of the particular studies as required",
+    "performing a variety of programming/technical duties involved in managing database data, providing technical support for code and data repositories within the university and in collaboration with PI colleagues",
+    "conducting data wrangling, cleaning, and/or analysis with relevant new/existing datasets",
+    "review laboratory methods manual, scientific journals, abstracts and other literature for information applicable to research experiments",
+    "determine and set up computers and laboratory equipment required for specific protocol",
+    "maintain GitHub repositories and other web/server needs for the lab",
+    "maintain software and laboratory equipment", 
+    "review work of other laboratory personnel and assist in training new personnel",
+    "and perform other related duties incidental to the work described above")
+
+responsibilities %>%
+  enframe(name = NULL, value = 'responsibility') %>%
+  mutate(header = responsibilities_header) %>%
+  detailed_entries(what = header, why = responsibility)
+```
+
+\medskip
+
+## Value I Add
+
+
+```{r values_added}
+
+values_added_header <- 'By doing all of the above and more, I support the lab\'s research efforts in several important ways:'
+
+values_added <- c(
+    "We can implement more ideas that require considerate technical effort and would otherwise have to be postponed or canceled",
+    "We partially off-load technical work from my colleagues to me which both makes that work done more robustly and frees my colleagues' time to handle the non-technical, core aspects of their research",
+    "I improve the smoothness of lab's operation by taking care of the lab's data, code, and technical documentation, and providing technical support to my colleagues",
+    "Through code review and advice, I improve my colleagues' technical skills",
+    "I save hours of manual labor by automating repetitive tasks")
+
+values_added %>%
+  enframe(name = NULL, value = 'value_added') %>%
+  mutate(header = values_added_header) %>%
+  detailed_entries(what = header, why = value_added)
+
+```
+
+
+
+# Academic Experience
+
+```{r jobs-previous-academic}
+experience %>%
+  filter(status == 'previous' & type == 'academic') %>%
+  detailed_entries(when = when, 
+                what = role, 
+                with = glue('\\newline {short}'),
+                .protect = FALSE)
+```
+
+# Non-Academic Jobs
+
+```{r jobs-non-academic}
+experience %>%
+  filter(type == 'non-academic') %>%
+  detailed_entries(
+    when = when,
+    with = if_else(is.na(department), NA_character_, department),
+    what = role,
+    where = glue("{company}, {where}"),
+    why = details)
+
 ```
 
 # Education
@@ -125,8 +201,6 @@ education.data %>%
   )
 ```
 
-\pagebreak
-
 # Publications
 
 ## Published
@@ -134,9 +208,9 @@ education.data %>%
 ```{r articles-published}
 articles.published %>%
   detailed_entries(
-    what = author,
+    what = title,
     when = as.character(year),
-    with = title,
+    with = author,
     where = journal,
     .protect = FALSE
   )
@@ -146,37 +220,12 @@ articles.published %>%
 ```{r articles-in-progress}
 articles.in.progress %>%
   detailed_entries(
-    what = author,
-    with = title,
+    what = title,
+    with = author,
     # In Zotero, the comment is under "type". No idea how this became "genre".
     when = genre,
     .protect = FALSE
   )
-```
-
-# Jobs
-
-## Academic
-
-```{r jobs-academic}
-jobs.academic %>% 
-  detailed_entries(
-    what = role,
-    when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
-    why = details)
-```
-## Non-academic
-
-```{r jobs-industry}
-jobs.industry %>% 
-  detailed_entries(
-    what = role,
-    when = glue("{start_date}--{end_date}"),
-    with = company,
-    where = where,
-    why = details)
 ```
 
 # Posters
@@ -185,12 +234,30 @@ jobs.industry %>%
 posters2 %>%
   arrange(desc(issued)) %>%
   detailed_entries(
-    what = author,
+    what = title,
     when = date_string,
-    with = title,
+    with = author,
     where = glue('{event}, {`event-place`}'),
     .protect = FALSE
   )
+```
+
+# Teaching
+
+## University courses
+
+```{r teaching-uni}
+teaching %>%
+  filter(type == "University course")  %>%
+  detailed_entries(what = what, when = when, with = with, where = where, why = why)
+```
+
+## Mini courses
+
+```{r teaching-summer-schools}
+teaching %>%
+  filter(type == "Mini course") %>%
+  detailed_entries(what = what, when = when, with = with, where = where, why = why)
 ```
 
 # Training
@@ -204,10 +271,10 @@ for (training.type in training.types) {
   training %>%
     filter(type == training.type) %>%
     arrange(desc(when)) %>%
-    detailed_entries(what = glue("{with}, {where}"), 
+    detailed_entries(what = what, 
                      where = when,
                      why = why, 
-                     with = what,
+                     with = glue("{with}, {where}"),
                      .protect = FALSE) %>%
     knitr::knit_print() %>%
     cat
@@ -217,27 +284,21 @@ for (training.type in training.types) {
 }
 ```
 
-# Teaching
-
-## University courses
-
-```{r teaching-uni}
-teaching %>%
-  filter(type == "University course")  %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
-```
-
-## Mini courses
-
-```{r teaching-summer-schools}
-teaching %>%
-  filter(type == "Mini course") %>%
-  detailed_entries(what = with, when = when, with = what, where = where, why = why)
-```
 
 # Extracurricular activity
 
 ```{r extracurricular}
 extracurricular %>%
-  detailed_entries(with = what, what = when, why = why)
+  detailed_entries(when = when, what = what, why = why, .protect = FALSE)
 ```
+
+
+# Skills
+
+```{r}
+skills %>% 
+  detailed_entries(what = skill, with = category)
+```
+
+
+
