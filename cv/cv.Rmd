@@ -212,7 +212,7 @@ articles.published %>%
   )
 ```
 
-## In progress
+## In progress/preprints
 
 ```{r articles-in-progress}
 articles.in.progress %>%
@@ -220,7 +220,7 @@ articles.in.progress %>%
     what = title,
     with = author,
     # In Zotero, the comment is under "type". No idea how this became "genre".
-    when = genre,
+    when = ifelse(is.na(note), genre, note),
     .protect = FALSE
   )
 ```
