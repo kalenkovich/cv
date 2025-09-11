@@ -294,7 +294,7 @@ extracurricular %>%
 
 ```{r}
 skills %>% 
-  detailed_entries(what = skill, with = category)
+  detailed_entries(what = category, with = skill)
 ```
 
 
