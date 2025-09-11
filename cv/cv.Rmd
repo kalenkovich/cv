@@ -1,9 +1,9 @@
 ---
 name: Evgenii
 surname: Kalenkovich
-position: "Research Data Specialist"
-address: "Bergelson Lab, Duke University"
-phone: "+19842602401"
+# position: "Research Data Specialist"
+# address: "Bergelson Lab, Duke University"
+# phone: "+19842602401"
 email: "e.kalenkovich@gmail.com"
 github: kalenkovich
 output:
@@ -94,16 +94,12 @@ extracurricular <- read_csv(
 
 # About Me
 
-- I am a Research Data Specialist in the Bergelson lab where we study language acquisition - babies learning language.
-  I take care of data, code, and software and provide technical support in all these areas.
-  My background is in Maths and Cognitive Science, so this job is tailor-made for me.
-- Before this job, I worked in research.
-  I might do that again some day.
-  I am still working on two projects from that part of my life.
+- I moved to Israel in the summer of 2025, and I am currently taking a break from work until I learn conversational Hebrew.
+- For about 9 years before this break, I worked in and around cognitive science research.
 - In my free time, I enjoy reading about the intersection of cognitive computational modeling, developmental psychology, and linguistics, and hope to make contributions to this area in the future.
-- I also enjoy indoor bouldering and introducing friends to the sport.
+- I also enjoy indoor bouldering and introducing new people to the sport.
 
-# Current Position
+# Last position
 
 ```{r jobs-current}
 experience %>%
@@ -117,10 +113,10 @@ experience %>%
       .protect = FALSE)
 ```
 
-## My Responsibilities
+## My responsibilities
 
 ```{r responsibilities}
-responsibilities_header <- 'As a Research Data Specialist (formally "assosiate in research") in Dr. Bergelson\'s lab, my responsibilities include, but aren\'t limited to:'
+responsibilities_header <- 'As a Research Data Specialist (formally, "fellow") in Dr. Bergelson\'s lab, my responsibilities included, but weren\'t limited to:'
 
 responsibilities <- c(
     "conferring with Dr. Bergelson to review work assignments and develop plans for research experiments and make modifications to existing procedures and techniques to meet the needs of the particular studies as required",
@@ -141,12 +137,12 @@ responsibilities %>%
 
 \medskip
 
-## Value I Add
+## Value I added
 
 
 ```{r values_added}
 
-values_added_header <- 'By doing all of the above and more, I support the lab\'s research efforts in several important ways:'
+values_added_header <- 'By doing all of the above and more, I supported the lab\'s research efforts in several important ways:'
 
 values_added <- c(
     "We can implement more ideas that require considerate technical effort and would otherwise have to be postponed or canceled",
@@ -164,7 +160,7 @@ values_added %>%
 
 
 
-# Academic Experience
+# Academic experience
 
 ```{r jobs-previous-academic}
 experience %>%
@@ -175,7 +171,7 @@ experience %>%
                 .protect = FALSE)
 ```
 
-# Non-Academic Jobs
+# Non-Academic jobs
 
 ```{r jobs-non-academic}
 experience %>%
@@ -215,6 +211,7 @@ articles.published %>%
     .protect = FALSE
   )
 ```
+
 ## In progress
 
 ```{r articles-in-progress}
